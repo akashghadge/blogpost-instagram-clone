@@ -1,0 +1,38 @@
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box; }
+
+.storyDiv {
+  margin-top: 20px;
+  display: block;
+  height: 50px;
+  overflow: auto;
+  scroll-behavior: smooth; }
+
+.storyIcon {
+  margin-left: 5px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%; }
+
+.postMain {
+  background-color: #b6f3f3;
+  border-radius: 25px; }
+
+.uploaderName {
+  margin-left: 10px;
+  display: inline;
+  font-family: cursive;
+  font-style: italic; }
+
+.postImg {
+  height: 360px;
+  width: 360px;
+  max-width: 80vw;
+  max-height: 80vh;
+  background-size: 100% 100%; }
+
+.marginPost {
+  display: inline;
+  margin-left: 10px; }

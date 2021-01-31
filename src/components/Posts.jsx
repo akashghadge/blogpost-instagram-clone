@@ -12,7 +12,7 @@ const Posts = (props) => {
             <div className="position-relative overflow-hidden my-3 postMain px-2 py-3">
                 <SmallProfilePic imgSrc={props.smallSrc}></SmallProfilePic><p className="uploaderName">{props.username}</p>
                 <hr></hr>
-                <div className="col-md-8 p-lg-5 mx-auto my-3">
+                <div className="col-md-6 mx-auto my-3">
                     <img src={props.mainImgSrc} className="postImg"></img>
                 </div>
                 <hr></hr>

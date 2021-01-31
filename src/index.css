@@ -27,8 +27,9 @@
   font-style: italic; }
 
 .postImg {
-  height: 360px;
-  width: 360px;
+  height: 100%;
+  width: 100%;
+  max-height: 500px;
   max-width: 80vw;
   max-height: 80vh;
   background-size: 100% 100%; }

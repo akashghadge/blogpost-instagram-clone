@@ -1,15 +1,24 @@
 const express = require("express");
 const app = express();
+const http = require("http").createServer(app);
+
 // dynamic port allocation
 const port = process.env.PORT || 5000;
+
 // cross origin error
 const cors = require("cors");
 require("dotenv").config();
 
-const http = require("http").createServer(app);
+// requiring cookie-parser and the jwt 
+const cookieParser = require("cookie-parser");
+
+
+
 // middlewares
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
+
 
 // adding mongoDB
 const mongoose = require("mongoose");
@@ -26,14 +35,16 @@ connection.once("open", () => {
     console.log("Database connected sucessfully");
 })
 
-// app.get("/", (req, res) => {
-//     res.send("hello")
-// })
+
 
 // routes 
 const User = require("./routers/User.route");
+const verify = require("./middleware/verify");
+const auth = require("./routers/auth.route");
+const profile = require("./routers/profile.route")
 app.use("/api/user", User);
-
+app.use("/api/me", verify, auth);
+app.use("/api/profile", verify, profile)
 
 http.listen(port, () => {
     const port = http.address().port;

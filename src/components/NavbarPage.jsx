@@ -6,6 +6,7 @@ import Home from "@material-ui/icons/Home"
 import Chat from "@material-ui/icons/Chat"
 import Search from "@material-ui/icons/Search"
 import Person from "@material-ui/icons/Person"
+import { AccountBox } from "@material-ui/icons"
 
 
 
@@ -25,8 +26,8 @@ const NavbarPage = () => {
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/chat" className="nav-link">
-                                <Chat></Chat>
+                            <NavLink to="/sign" className="nav-link">
+                                <AccountBox></AccountBox>
                             </NavLink>
                         </li>
                         <li className="nav-item">

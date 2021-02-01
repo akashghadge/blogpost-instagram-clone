@@ -3,7 +3,10 @@ const router = Router();
 
 let User = require("../models/User.model");
 
+
+
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 
 router.post("/add", (req, res) => {
@@ -29,9 +32,21 @@ router.post("/add", (req, res) => {
             });
             const salt = await bcrypt.genSalt(10);
             newUser.password = await bcrypt.hash(newUser.password, salt);
+
+            // making a new access token for the user for sign in
+            let payload = {
+                username: username
+            }
+
+            //create the access token with the shorter lifespan
+            let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+                expiresIn: 900
+            })
+
             newUser.save().then((data) => {
-                console.log(data);
-                res.status(200).json(data);
+                res.status(200).json({
+                    "jwt": accessToken
+                })
             }).catch((err) => {
                 console.log(err);
                 res.status(400).json(err)
@@ -52,8 +67,22 @@ router.post("/in", async (req, res) => {
     if (user) {
         const validPassword = await bcrypt.compare(password, user.password);
         if (validPassword) {
+
+            /**
+             *issuesing the token
+             */
+            let payload = {
+                username: username
+            }
+
+            //create the access token with the shorter lifespan
+            let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 900 });
+
+            // res.cookie("jwt", accessToken, { secure: true, httpOnly: true });
+            // res.send();
+            // console.log(accessToken);
             res.status(200).json({
-                message: "valid password"
+                "jwt": accessToken
             })
         }
         else {

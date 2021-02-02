@@ -1,7 +1,6 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import ReactDOM from "react-dom"
 import Posts from "./Posts"
-import Story from "./Story"
 
 import imgSrc from "../Resources/Akash Image.jpg"
 
@@ -22,15 +21,22 @@ const HomePage = () => {
         console.log(err);
     })
 
+    let [allPost, setAllPost] = useState([{}]);
+    useEffect(() => {
+        axios.post("http://localhost:5000/api/post/all").then((data) => {
+            setAllPost(data.data)
+            console.log(allPost);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, []);
+
+
     return (
         <>
-            <Story></Story>
-            <Posts smallSrc={imgSrc} mainImgSrc={imgSrc} username={"akash"} likeCount={1} commentCount={2}></Posts>
-            <Posts smallSrc={imgSrc2} mainImgSrc={imgSrc2} username={"akash"} likeCount={1} commentCount={2}></Posts>
-            <Posts smallSrc={imgSrc3} mainImgSrc={imgSrc3} username={"akash"} likeCount={1} commentCount={2}></Posts>
-            <Posts smallSrc={imgSrc} mainImgSrc={imgSrc} username={"akash"} likeCount={1} commentCount={2}></Posts>
-            <Posts smallSrc={imgSrc} mainImgSrc={imgSrc} username={"akash"} likeCount={1} commentCount={2}></Posts>
-            <Posts smallSrc={imgSrc} mainImgSrc={imgSrc} username={"akash"} likeCount={1} commentCount={2}></Posts>
+            {allPost.map((elem, index, arr) => {
+                return <Posts username={elem.username} title={elem.title} desc={elem.desc}></Posts>
+            })}
         </>
     )
 }

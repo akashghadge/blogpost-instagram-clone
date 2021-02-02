@@ -1,6 +1,21 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+const Post = new Schema({
+    username: {
+        type: String
+    },
+    title: {
+        type: String,
+        unique: true
+    },
+    desc: {
+        type: String
+    },
+    Date: {
+        type: Date,
+        default: Date.now
+    }
+})
 const userSchema = new Schema({
     fname: {
         type: String,
@@ -27,6 +42,7 @@ const userSchema = new Schema({
         required: true,
         minlength: 8
     },
+    post: [Post]
 }, {
     timestamps: true
 });

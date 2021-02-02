@@ -17,6 +17,7 @@ const verify = (req, res, next) => {
     catch (e) {
         //if an error occured return request unauthorized error
         console.log("user verification is fail");
+        res.locals.currentuser = null;
         return res.status(401).send()
     }
 }

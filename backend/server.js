@@ -42,10 +42,11 @@ const User = require("./routers/User.route");
 const verify = require("./middleware/verify");
 const auth = require("./routers/auth.route");
 const profile = require("./routers/profile.route")
+const Post = require("./routers/post.route");
 app.use("/api/user", User);
 app.use("/api/me", verify, auth);
 app.use("/api/profile", verify, profile)
-
+app.use("/api/post", Post);
 http.listen(port, () => {
     const port = http.address().port;
     const address = http.address().address;

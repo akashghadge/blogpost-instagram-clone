@@ -6,7 +6,7 @@ import Home from "@material-ui/icons/Home"
 import Chat from "@material-ui/icons/Chat"
 import Search from "@material-ui/icons/Search"
 import Person from "@material-ui/icons/Person"
-import { AccountBox } from "@material-ui/icons"
+import { AccountBox, AddBox } from "@material-ui/icons"
 
 
 
@@ -38,6 +38,11 @@ const NavbarPage = () => {
                         <li className="nav-item">
                             <NavLink to="/profile" className="nav-link">
                                 <Person></Person>
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="/createpost" className="nav-link">
+                                <AddBox></AddBox>
                             </NavLink>
                         </li>
                     </ul>

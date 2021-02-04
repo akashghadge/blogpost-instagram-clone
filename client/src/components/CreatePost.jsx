@@ -46,6 +46,7 @@ const CreatePost = () => {
                 desc: inputValue.content
             }).then((data) => {
                 // console.log(data);
+                alert("Post added succefully");
                 setInputValue({
                     title: "",
                     content: ""

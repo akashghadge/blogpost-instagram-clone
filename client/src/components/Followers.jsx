@@ -4,6 +4,9 @@ import { useHistory } from "react-router-dom"
 
 import axios from "axios"
 const Followers = () => {
+    let [loading, setLoading] = useState(true);
+
+
     // let [fname, setFname] = useState("");
     // let [lname, setLname] = useState("");
     // let [email, setEmail] = useState("");
@@ -15,6 +18,7 @@ const Followers = () => {
         token: token
     }).then((data) => {
         setUsername(data.data.username);
+        setLoading(false);
         // setFname(data.data.fname);
         // setLname(data.data.lname);
         // setEmail(data.data.email);
@@ -29,7 +33,7 @@ const Followers = () => {
             username: username
         }).then((data) => {
             setFollowers(data.data)
-            // console.log(data.data);
+
         }).catch((err) => {
             console.log(err);
         })
@@ -43,21 +47,24 @@ const Followers = () => {
     }
     return (
         <>
-            <div className="text-center">
-                <h2 style={{
-                    fontStyle: "italic",
-                    marginTop: "20px"
-                }} className="followHeading">Followers</h2>
-                <ul className="serachList">
-                    {
-                        follwers.length == 0 ? <h1 >No follower present</h1>
-                            :
-                            follwers.map((elem, index, arr) => {
-                                return <li className="listElement" name={elem.fusername} onClick={clickedUser}>{elem.fusername}</li>
-                            })
-                    }
-                </ul>
-            </div>
+            {
+                loading ? <h1>Loading ....</h1> :
+                    <div className="text-center">
+                        <h2 style={{
+                            fontStyle: "italic",
+                            marginTop: "20px"
+                        }} className="followHeading">Followers</h2>
+                        <ul className="serachList">
+                            {
+                                follwers.length == 0 ? <h1 >No follower present</h1>
+                                    :
+                                    follwers.map((elem, index, arr) => {
+                                        return <li className="listElement" name={elem.fusername} onClick={clickedUser}>{elem.fusername}</li>
+                                    })
+                            }
+                        </ul>
+                    </div>
+            }
         </>
     )
 }

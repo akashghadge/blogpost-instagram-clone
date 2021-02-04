@@ -18,7 +18,6 @@ const Followers = () => {
         token: token
     }).then((data) => {
         setUsername(data.data.username);
-        setLoading(false);
         // setFname(data.data.fname);
         // setLname(data.data.lname);
         // setEmail(data.data.email);
@@ -33,7 +32,7 @@ const Followers = () => {
             username: username
         }).then((data) => {
             setFollowers(data.data)
-
+            setLoading(false);
         }).catch((err) => {
             console.log(err);
         })

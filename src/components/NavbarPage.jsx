@@ -21,28 +21,28 @@ const NavbarPage = () => {
                 <div className="collapse navbar-collapse" id="navbarsExample09">
                     <ul className="navbar-nav mr-auto p-1 mx-3">
                         <li className="nav-item">
-                            <NavLink exact to="/" className="nav-link">
-                                <Home></Home>
+                            <NavLink exact to="/" className="nav-link navIcon">
+                                <Home className="navIcon"></Home>
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/sign" className="nav-link">
-                                <AccountBox></AccountBox>
+                            <NavLink to="/sign" className="nav-link ">
+                                <AccountBox className="navIcon"></AccountBox>
                             </NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/search" className="nav-link">
-                                <Search></Search>
+                                <Search className="navIcon"></Search>
                             </NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/profile" className="nav-link">
-                                <Person></Person>
+                                <Person className="navIcon"></Person>
                             </NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink to="/createpost" className="nav-link">
-                                <AddBox></AddBox>
+                                <AddBox className="navIcon"></AddBox>
                             </NavLink>
                         </li>
                     </ul>

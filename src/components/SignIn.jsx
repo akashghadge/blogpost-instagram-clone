@@ -61,14 +61,14 @@ const SignIn = () => {
         <>
             <div className="container my-5 px-5">
                 <h1 className="signInHeding">Sign In</h1>
-                <div className="row widthSignIn">
-                    <div className="mb-3 mx-3 signInUpText">
+                <div className="row widthSignIn my-4" style={{ wordSpacing: "10px" }}>
+                    <div className="mb-3 signInUpText mx-1">
                         <label >UserName</label>
-                        <input type="text" className="form-control" id="username" placeholder="akash@3" onChange={inputChange} value={allCurrentData.username} required></input>
+                        <input type="text" className="form-control inputFieldSignInUp" id="username" placeholder="akash@3" onChange={inputChange} value={allCurrentData.username} required style={{ boxShadow: "none" }}></input>
                     </div>
                     <div className="mb-3 signInUpText">
                         <label >Password</label>
-                        <input type="password" className="form-control" id="password" onChange={inputChange} value={allCurrentData.password} required></input>
+                        <input type="password" className="form-control inputFieldSignInUp" id="password" onChange={inputChange} value={allCurrentData.password} required style={{ boxShadow: "none" }}></input>
                     </div>
                 </div>
                 <div className="my-3 mx-2">

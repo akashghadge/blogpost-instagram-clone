@@ -3,6 +3,12 @@
   margin: 0%;
   box-sizing: border-box; }
 
+.navIcon:hover {
+  color: purple; }
+
+.navIcon:active {
+  color: purple; }
+
 .storyDiv {
   margin-top: 20px;
   display: block;
@@ -53,7 +59,8 @@
   margin-bottom: 20px; }
 
 .deleteButton {
-  color: red; }
+  color: red;
+  padding-bottom: 20px; }
 
 .buttonSignIn {
   outline: none;
@@ -74,6 +81,11 @@
   font-weight: 700;
   font-style: italic;
   font-family: cursive; }
+
+.inputFieldSignInUp {
+  border: none;
+  border-bottom: black 3px solid;
+  border-radius: 0px; }
 
 .mainProfile {
   margin-top: 20px;
@@ -111,3 +123,36 @@
   font-family: cursive;
   font-style: italic;
   font-weight: 700; }
+
+#titleInput {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-bottom: black 3px solid;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  font-size: larger;
+  font-weight: 700; }
+
+#textInput {
+  box-shadow: none;
+  border: none;
+  border-bottom: black 3px solid;
+  font-family: cursive; }
+
+.serachList {
+  list-style-type: none;
+  font-family: cursive;
+  line-height: 50px;
+  font-weight: 400;
+  font-style: italic; }
+
+.followButton {
+  background-image: linear-gradient(110deg, purple, pink); }
+  .followButton:hover {
+    color: white; }
+
+.unfollowButton {
+  background-image: linear-gradient(110deg, purple, pink); }
+  .unfollowButton:hover {
+    color: white; }

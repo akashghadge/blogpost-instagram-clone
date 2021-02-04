@@ -93,4 +93,15 @@ router.post("/in", async (req, res) => {
     }
 })
 
+router.post("/all", async (req, res) => {
+    try {
+        let data = await User.find({}).select("username -_id");
+        res.json(data);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json("server error");
+    }
+})
+
 module.exports = router;

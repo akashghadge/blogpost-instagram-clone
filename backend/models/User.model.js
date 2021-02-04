@@ -15,6 +15,20 @@ const Post = new Schema({
         type: Date,
         default: Date.now
     }
+});
+
+const follower = new Schema({
+    fusername: {
+        type: String,
+        unique: true
+    }
+})
+
+const following = new Schema({
+    fusername: {
+        type: String,
+        unique: true
+    }
 })
 const userSchema = new Schema({
     fname: {
@@ -42,7 +56,9 @@ const userSchema = new Schema({
         required: true,
         minlength: 8
     },
-    post: [Post]
+    post: [Post],
+    follower: [follower],
+    following: [following]
 }, {
     timestamps: true
 });

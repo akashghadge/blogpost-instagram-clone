@@ -25,7 +25,7 @@ const HomePage = () => {
     useEffect(() => {
         axios.post("http://localhost:5000/api/post/all").then((data) => {
             setAllPost(data.data)
-            console.log(allPost);
+            // console.log(allPost);
         }).catch((err) => {
             console.log(err);
         })
@@ -34,9 +34,12 @@ const HomePage = () => {
 
     return (
         <>
-            {allPost.map((elem, index, arr) => {
-                return <Posts username={elem.username} title={elem.title} desc={elem.desc}></Posts>
-            })}
+            <hr></hr>
+            {
+                (allPost.length == 0) ?
+                    <h1>No posts available here</h1> : allPost.map((elem, index, arr) => {
+                        return <Posts username={elem.username} title={elem.title} desc={elem.desc}></Posts>
+                    })}
         </>
     )
 }

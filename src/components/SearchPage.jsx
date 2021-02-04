@@ -1,0 +1,86 @@
+import React, { useState, useEffect } from "react"
+import ReactDOM from "react-dom"
+
+import axios from "axios"
+import Search from "@material-ui/icons/Search"
+
+import Button from "@material-ui/core/Button/Button"
+import { useHistory } from "react-router-dom"
+const SearchPage = () => {
+    let [username, setUser] = useState("");
+
+
+    // authintication here
+    let history = useHistory();
+    let token = localStorage.getItem("token");
+    axios.post("http://localhost:5000/api/me", {
+        token: token
+    }).then((data) => {
+        // console.log(data);
+        let user = data.data.username;
+        setUser(user);
+    }).catch((err) => {
+        history.push("/sign");
+        console.log(err);
+    })
+
+    let [inputValue, setInputValue] = useState({
+        title: "",
+    })
+    function inputChange(event) {
+        let { name, value } = event.target;
+        setInputValue((prev) => {
+            return {
+                ...prev,
+                [name]: value
+            }
+        })
+    }
+
+    let [allUsers, setAllUsers] = useState([]);
+    useEffect(() => {
+        axios.post("http://localhost:5000/api/user/all", {
+
+        }).then((data) => {
+            console.log(data);
+            setAllUsers(data.data);
+        }).catch((err) => {
+            // console.log(err);
+        })
+    }, [])
+
+    function submitData() {
+
+    }
+    function clickedUser(e) {
+        let pUsername = e.target.id;
+        console.log(pUsername);
+        history.push(`/public/${pUsername}`);
+    }
+    return (
+        <>
+            <div className="position-relative text-center" >
+                <h1 className="display-4 font-weight-normal" id="headingCreatePost">Create Post</h1>
+                <input type="text" placeholder="search a username" id="titleInput" name="title" className="form-control" onChange={inputChange} value={inputValue.title}></input>
+                <Button id="addButton" className="my-3" onClick={submitData}><Search></Search></Button>
+            </div>
+            <ul style={{
+                textAlign: "center"
+            }} className="serachList">
+                {
+                    allUsers.length != 0 ?
+                        allUsers.map((elem, index) => {
+                            return (
+                                <>
+                                    <li onClick={clickedUser} name={elem.username} id={elem.username} style={{ display: "inline" }}>{elem.username}</li>
+                                    <br></br>
+                                </>
+                            )
+                        }) :
+                        <h3>No users available</h3>
+                }
+            </ul>
+        </>
+    )
+}
+export default SearchPage;

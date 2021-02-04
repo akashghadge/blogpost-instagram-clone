@@ -43,10 +43,18 @@ const verify = require("./middleware/verify");
 const auth = require("./routers/auth.route");
 const profile = require("./routers/profile.route")
 const Post = require("./routers/post.route");
+const follow = require("./routers/follow.route");
+const public = require("./routers/public.route");
+
+
 app.use("/api/user", User);
 app.use("/api/me", verify, auth);
 app.use("/api/profile", verify, profile)
 app.use("/api/post", Post);
+app.use("/api/follow", follow);
+app.use("/api/public", public);
+
+
 http.listen(port, () => {
     const port = http.address().port;
     const address = http.address().address;

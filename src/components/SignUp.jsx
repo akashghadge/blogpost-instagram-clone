@@ -77,27 +77,27 @@ const SignUp = () => {
                 <div className="row">
                     <div className="col-md-6 mb-3 signInUpText">
                         <label >First name</label>
-                        <input type="text" className="form-control" id="fname" placeholder="" value={allCurrentData.fname} onChange={inputChange} required></input>
+                        <input type="text" className="form-control inputFieldSignInUp" id="fname" placeholder="" value={allCurrentData.fname} onChange={inputChange} required style={{ boxShadow: "none" }}></input>
                     </div>
                     <div className="col-md-6 mb-3 signInUpText">
                         <label >Last name</label>
-                        <input type="text" className="form-control" id="lname" placeholder="" value={allCurrentData.lname} onChange={inputChange} required></input>
+                        <input type="text" className="form-control inputFieldSignInUp" id="lname" placeholder="" value={allCurrentData.lname} onChange={inputChange} style={{ boxShadow: "none" }} required></input>
                     </div>
                 </div>
                 <div className="row">
                     <div className="mb-3 mx-3 signInUpText">
                         <label >Email</label>
-                        <input type="email" className="form-control" id="email" placeholder="you@example.com" onChange={inputChange} value={allCurrentData.email} required></input>
+                        <input type="email" className="form-control inputFieldSignInUp" id="email" placeholder="you@example.com" style={{ boxShadow: "none" }} onChange={inputChange} value={allCurrentData.email} required></input>
                     </div>
                 </div>
                 <div className="row">
                     <div className="mb-3 mx-3 signInUpText">
                         <label >UserName</label>
-                        <input type="text" className="form-control" id="username" placeholder="akash@3" onChange={inputChange} value={allCurrentData.username} required></input>
+                        <input type="text" className="form-control inputFieldSignInUp" id="username" placeholder="akash@3" style={{ boxShadow: "none" }} onChange={inputChange} value={allCurrentData.username} required></input>
                     </div>
                     <div className="mb-3 mx-3 signInUpText">
                         <label >Password</label>
-                        <input type="password" className="form-control" id="password" onChange={inputChange} value={allCurrentData.password} required></input>
+                        <input type="password" className="form-control inputFieldSignInUp" id="password" onChange={inputChange} style={{ boxShadow: "none" }} value={allCurrentData.password} required></input>
                     </div>
 
                 </div>

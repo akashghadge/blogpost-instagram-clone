@@ -60,8 +60,8 @@ const CreatePost = () => {
 
     return (
         <>
-            <div class="position-relative text-center" >
-                <h1 class="display-4 font-weight-normal" id="headingCreatePost">Create Post</h1>
+            <div className="position-relative text-center" >
+                <h1 className="display-4 font-weight-normal" id="headingCreatePost">Create Post</h1>
                 <input type="text" placeholder="type a title" id="titleInput" name="title" className="form-control" onChange={inputChange} value={inputValue.title}></input>
                 <br></br>
                 <textarea placeholder="type a post" id="textInput" className="form-control" name="content" onChange={inputChange} value={inputValue.content}></textarea>

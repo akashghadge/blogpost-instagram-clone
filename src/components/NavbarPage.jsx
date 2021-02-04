@@ -7,9 +7,11 @@ import Chat from "@material-ui/icons/Chat"
 import Search from "@material-ui/icons/Search"
 import Person from "@material-ui/icons/Person"
 import { AccountBox, AddBox } from "@material-ui/icons"
+import ExitToApp from "@material-ui/icons/ExitToApp"
 
-
-
+function logoutUser() {
+    localStorage.setItem("token", "");
+}
 const NavbarPage = () => {
     return (
         <>
@@ -43,6 +45,11 @@ const NavbarPage = () => {
                         <li className="nav-item">
                             <NavLink to="/createpost" className="nav-link">
                                 <AddBox className="navIcon"></AddBox>
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="/sign" className="nav-link">
+                                <ExitToApp onClick={logoutUser}  className="logoutIcon"></ExitToApp>
                             </NavLink>
                         </li>
                     </ul>

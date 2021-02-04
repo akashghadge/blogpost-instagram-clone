@@ -123,7 +123,6 @@ router.post("/following/delete", async (req, res) => {
 router.post("/following/is", async (req, res) => {
     const username = req.body.currentUser;
     const Fusername = req.body.username;
-
     let data = await User.find({ username: username }).select("following -_id")
         .then((data) => {
             // console.log(data[0].following);

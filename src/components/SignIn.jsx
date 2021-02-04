@@ -37,10 +37,10 @@ const SignIn = () => {
                 password: allCurrentData.password
             }).then((data) => {
                 // window.location.reload(true);
-                console.log("User Sign In successfully");
-                console.log(data);
+                // console.log("User Sign In successfully");
+                // console.log(data);
                 let token = data.data.jwt;
-                console.log(token);
+                // console.log(token);
                 localStorage.setItem("token", token);
                 setAllCurrentData({
                     username: "",

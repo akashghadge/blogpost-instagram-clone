@@ -15,19 +15,27 @@ const Posts = (props) => {
             title: props.title,
             desc: props.desc
         }).then((data) => {
-            console.log(data);
+            // console.log(data);
             window.location.reload(true);
         }).catch((err) => {
             console.log(err);
         })
     }
 
+    let history = useHistory();
+    function clickedUser(e) {
+        let pUsername = e.target.innerText;
+        // console.log(pUsername);
+        let final = pUsername.split(" ");
+        // console.log(final[1]);
+        history.push(`/public/${final[1]}`);
+    }
 
     return (
         <>
             <div className="position-relative overflow-hidden my-3 postMain px-2" >
                 <h3 className="titleNamePost my-2">{props.title}</h3>
-                <p className="uploaderName">- {props.username}</p>
+                <p className="uploaderName" onClick={clickedUser}>- {props.username}</p>
                 <hr></hr>
                 <div className="px-5 my-3 descPost" style={{ textIndent: "10px" }}>
                     <p>{props.desc}</p>

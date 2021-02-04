@@ -42,25 +42,37 @@ const SearchPage = () => {
         axios.post("http://localhost:5000/api/user/all", {
 
         }).then((data) => {
-            console.log(data);
+            // console.log(data);
             setAllUsers(data.data);
         }).catch((err) => {
             // console.log(err);
         })
-    }, [])
+    }, [inputValue.title])
+
 
     function submitData() {
-
+        let temp = allUsers;
+        let temp1 = [];
+        setAllUsers([]);
+        temp.forEach((elem, index, arr) => {
+            // console.log(elem.username);
+            // console.log(inputValue.title);
+            if (elem.username == inputValue.title) {
+                temp1.push({ username: elem.username });
+            }
+        })
+        setAllUsers(temp1);
+        // console.log(allUsers);
     }
     function clickedUser(e) {
         let pUsername = e.target.id;
-        console.log(pUsername);
+        // console.log(pUsername);
         history.push(`/public/${pUsername}`);
     }
     return (
         <>
             <div className="position-relative text-center" >
-                <h1 className="display-4 font-weight-normal" id="headingCreatePost">Create Post</h1>
+                <h1 className="display-4 font-weight-normal" id="headingCreatePost">Search Users</h1>
                 <input type="text" placeholder="search a username" id="titleInput" name="title" className="form-control" onChange={inputChange} value={inputValue.title}></input>
                 <Button id="addButton" className="my-3" onClick={submitData}><Search></Search></Button>
             </div>
@@ -72,7 +84,7 @@ const SearchPage = () => {
                         allUsers.map((elem, index) => {
                             return (
                                 <>
-                                    <li onClick={clickedUser} name={elem.username} id={elem.username} style={{ display: "inline" }}>{elem.username}</li>
+                                    <li className="listElement" onClick={clickedUser} name={elem.username} id={elem.username} style={{ display: "inline" }}>{elem.username}</li>
                                     <br></br>
                                 </>
                             )

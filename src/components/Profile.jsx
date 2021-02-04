@@ -21,6 +21,7 @@ const Profile = () => {
     axios.post("http://localhost:5000/api/profile", {
         token: token
     }).then((data) => {
+        // console.log(data);
         setUsername(data.data.username);
         setFname(data.data.fname);
         setLname(data.data.lname);
@@ -84,7 +85,7 @@ const Profile = () => {
             <div>
                 <>
                     {
-                        (allPost.length ===  0) ?
+                        (allPost.length === 0) ?
                             <h1 style={{
                                 fontFamily: "Times New Roman",
                                 fontWeight: "700"

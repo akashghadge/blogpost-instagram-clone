@@ -14,6 +14,12 @@
     }
 }
 
+.logoutIcon {
+    &:hover {
+        color: red;
+    }
+}
+
 .storyDiv {
     margin-top: 20px;
     display: block;
@@ -42,6 +48,11 @@
     font-style: italic;
     font-size: 15px;
     text-align: right;
+
+    &:hover {
+        color: blue;
+        cursor: pointer;
+    }
 }
 
 .titleNamePost {
@@ -189,6 +200,14 @@
     line-height: 50px;
     font-weight: 400;
     font-style: italic;
+
+}
+
+.listElement {
+    &:hover {
+        cursor: pointer;
+        color: blue;
+    }
 }
 
 
@@ -207,4 +226,14 @@
     &:hover {
         color: white;
     }
+}
+
+.followHeading {
+    background-image: linear-gradient(180deg, purple, pink);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 50px;
+    font-family: cursive;
+    font-style: italic;
+    font-weight: 700;
 }

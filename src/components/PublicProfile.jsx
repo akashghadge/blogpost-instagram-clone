@@ -29,7 +29,7 @@ const Profile = () => {
         token: token
     }).then((data) => {
         setCurrentUsername(data.data.username);
-        console.log(currentUser);
+        // console.log(currentUser);
     }).catch((err) => {
         console.log(err);
     })
@@ -75,7 +75,7 @@ const Profile = () => {
         username: username,
         currentUser: currentUser
     }).then((data) => {
-        console.log(data);
+        // console.log(data);
         setFollowButtonValue(data.data)
     }).catch((err) => {
         console.log(err);
@@ -87,7 +87,7 @@ const Profile = () => {
             username: currentUser,
             fUsername: username
         }).then((data) => {
-            console.log(data);
+            // console.log(data);
         }).catch((err) => {
             console.log(err);
         })
@@ -95,7 +95,7 @@ const Profile = () => {
             username: username,
             fUsername: currentUser
         }).then((data) => {
-            console.log(data);
+            // console.log(data);
         }).catch((err) => {
             console.log(err);
         })
@@ -107,7 +107,7 @@ const Profile = () => {
             username: currentUser,
             fUsername: username
         }).then((data) => {
-            console.log(data);
+            // console.log(data);
         }).catch((err) => {
             console.log(err);
         })
@@ -115,7 +115,7 @@ const Profile = () => {
             username: username,
             fUsername: currentUser
         }).then((data) => {
-            console.log(data);
+            // console.log(data);
         }).catch((err) => {
             console.log(err);
         })
@@ -139,7 +139,9 @@ const Profile = () => {
             </div>
             <div style={{ textAlign: "center" }}>
                 {
-                    (!followButtonValue) ? (<Button className="followButton" onClick={followButtonClick}>Follow</Button>) : (<Button className="unfollowButton" onClick={unfollowButtonClick}>UnFollow</Button>)
+                    currentUser != username ?
+                        (!followButtonValue) ? (<Button className="followButton" onClick={followButtonClick}>Follow</Button>) : (<Button className="unfollowButton" onClick={unfollowButtonClick}>UnFollow</Button>) :
+                        null
                 }
             </div>
             <hr></hr>

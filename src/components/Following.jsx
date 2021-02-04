@@ -29,26 +29,30 @@ const Following = () => {
             username: username
         }).then((data) => {
             setFollowing(data.data)
-            console.log(data.data);
+            // console.log(data.data);
         }).catch((err) => {
             console.log(err);
         })
     }, [username]);
 
-
+    function clickedUser(e) {
+        let pUsername = e.target.innerText;
+        // console.log(pUsername);
+        history.push(`/public/${pUsername}`);
+    }
     return (
         <>
             <div className="text-center">
                 <h2 style={{
                     fontStyle: "italic",
                     marginTop: "20px",
-                }}>Following</h2>
-                <ul>
+                }} className="followHeading">Following</h2>
+                <ul className="serachList">
                     {
                         follwing.length == 0 ? <h1>you not follow anyone</h1>
                             :
                             follwing.map((elem, index, arr) => {
-                                return <h4>{elem.fusername}</h4>
+                                return <li className="listElement" onClick={clickedUser}>{elem.fusername}</li>
                             })
                     }
                 </ul>

@@ -29,24 +29,31 @@ const Followers = () => {
             username: username
         }).then((data) => {
             setFollowers(data.data)
-            console.log(data.data);
+            // console.log(data.data);
         }).catch((err) => {
             console.log(err);
         })
     }, [username]);
+
+
+    function clickedUser(e) {
+        let pUsername = e.target.innerText;
+        // console.log(pUsername);
+        history.push(`/public/${pUsername}`);
+    }
     return (
         <>
             <div className="text-center">
                 <h2 style={{
                     fontStyle: "italic",
                     marginTop: "20px"
-                }}>Followers</h2>
-                <ul>
+                }} className="followHeading">Followers</h2>
+                <ul className="serachList">
                     {
-                        follwers.length == 0 ? <h1>No follower present</h1>
+                        follwers.length == 0 ? <h1 >No follower present</h1>
                             :
                             follwers.map((elem, index, arr) => {
-                                return <h4>{elem.fusername}</h4>
+                                return <li className="listElement" name={elem.fusername} onClick={clickedUser}>{elem.fusername}</li>
                             })
                     }
                 </ul>

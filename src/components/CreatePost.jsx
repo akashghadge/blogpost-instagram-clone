@@ -45,7 +45,7 @@ const CreatePost = () => {
                 title: inputValue.title,
                 desc: inputValue.content
             }).then((data) => {
-                console.log(data);
+                // console.log(data);
                 setInputValue({
                     title: "",
                     content: ""

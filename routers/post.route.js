@@ -13,8 +13,10 @@ router.post("/", async (req, res,) => {
     // res.status(200).json(res.locals.currentuser)
     const username = req.body.username;
     let data = await User.findOne({ username: username });
-    console.log(data.post);
-    res.status(200).json(data.post);
+    if (data != null) {
+        console.log(data.post);
+        res.status(200).json(data.post);
+    }
 
 });
 

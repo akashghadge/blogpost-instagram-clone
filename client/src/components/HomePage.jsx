@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom"
 const HomePage = () => {
     let history = useHistory();
     let token = localStorage.getItem("token");
-    axios.post("http://localhost:5000/api/me", {
+    axios.post("/api/me", {
         token: token
     }).then((data) => {
         // console.log(data);
@@ -23,7 +23,7 @@ const HomePage = () => {
 
     let [allPost, setAllPost] = useState([{}]);
     useEffect(() => {
-        axios.post("http://localhost:5000/api/post/all").then((data) => {
+        axios.post("/api/post/all").then((data) => {
             setAllPost(data.data)
             // console.log(allPost);
         }).catch((err) => {

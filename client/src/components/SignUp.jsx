@@ -42,7 +42,7 @@ const SignUp = () => {
                 username: allCurrentData.username,
                 password: allCurrentData.password
             })
-            axios.post("http://localhost:5000/api/user/add", {
+            axios.post("/api/user/add", {
                 fname: allCurrentData.fname,
                 lname: allCurrentData.lname,
                 email: allCurrentData.email,

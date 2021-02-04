@@ -13,7 +13,7 @@ const SearchPage = () => {
     // authintication here
     let history = useHistory();
     let token = localStorage.getItem("token");
-    axios.post("http://localhost:5000/api/me", {
+    axios.post("/api/me", {
         token: token
     }).then((data) => {
         // console.log(data);
@@ -39,7 +39,7 @@ const SearchPage = () => {
 
     let [allUsers, setAllUsers] = useState([]);
     useEffect(() => {
-        axios.post("http://localhost:5000/api/user/all", {
+        axios.post("/api/user/all", {
 
         }).then((data) => {
             // console.log(data);

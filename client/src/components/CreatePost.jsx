@@ -13,7 +13,7 @@ const CreatePost = () => {
     // authintication here
     let history = useHistory();
     let token = localStorage.getItem("token");
-    axios.post("http://localhost:5000/api/me", {
+    axios.post("/api/me", {
         token: token
     }).then((data) => {
         // console.log(data);
@@ -40,7 +40,7 @@ const CreatePost = () => {
     }
     function submitData() {
         if (inputValue.title.length >= 3 && inputValue.content.length >= 3) {
-            axios.post("http://localhost:5000/api/post/create", {
+            axios.post("/api/post/create", {
                 username: username,
                 title: inputValue.title,
                 desc: inputValue.content

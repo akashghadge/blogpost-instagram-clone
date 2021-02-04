@@ -14,7 +14,7 @@ const Profile = () => {
     let [email, setEmail] = useState("");
 
 
-    axios.get(`http://localhost:5000/api/public/${username}`).then((data) => {
+    axios.get(`/api/public/${username}`).then((data) => {
         setFname(data.data[0].fname);
         setLname(data.data[0].lname);
         setEmail(data.data[0].email);
@@ -25,7 +25,7 @@ const Profile = () => {
 
     let [currentUser, setCurrentUsername] = useState("");
     let token = localStorage.getItem("token");
-    axios.post("http://localhost:5000/api/profile", {
+    axios.post("/api/profile", {
         token: token
     }).then((data) => {
         setCurrentUsername(data.data.username);
@@ -37,7 +37,7 @@ const Profile = () => {
 
     let [allPost, setAllPost] = useState([{}]);
     useEffect(() => {
-        axios.post("http://localhost:5000/api/post/", {
+        axios.post("/api/post/", {
             username: username
         }).then((data) => {
             setAllPost(data.data)
@@ -49,7 +49,7 @@ const Profile = () => {
 
     // follwers count
     let [follwersCount, setFollowersCount] = useState(0);
-    axios.post("http://localhost:5000/api/follow/followers/me/count", {
+    axios.post("/api/follow/followers/me/count", {
         username: username
     }).then((data) => {
         setFollowersCount(data.data)
@@ -60,7 +60,7 @@ const Profile = () => {
 
     // following count
     let [follwingCount, setFollowingCount] = useState(0);
-    axios.post("http://localhost:5000/api/follow/following/me/count", {
+    axios.post("/api/follow/following/me/count", {
         username: username
     }).then((data) => {
         setFollowingCount(data.data)
@@ -71,7 +71,7 @@ const Profile = () => {
 
     let [followButtonValue, setFollowButtonValue] = useState(true);
 
-    axios.post("http://localhost:5000/api/follow/following/is", {
+    axios.post("/api/follow/following/is", {
         username: username,
         currentUser: currentUser
     }).then((data) => {
@@ -83,7 +83,7 @@ const Profile = () => {
 
     function followButtonClick(e) {
         setFollowButtonValue(1);
-        axios.post("http://localhost:5000/api/follow/following/add", {
+        axios.post("/api/follow/following/add", {
             username: currentUser,
             fUsername: username
         }).then((data) => {
@@ -91,7 +91,7 @@ const Profile = () => {
         }).catch((err) => {
             console.log(err);
         })
-        axios.post("http://localhost:5000/api/follow/followers/add", {
+        axios.post("/api/follow/followers/add", {
             username: username,
             fUsername: currentUser
         }).then((data) => {
@@ -103,7 +103,7 @@ const Profile = () => {
 
     function unfollowButtonClick(e) {
         setFollowButtonValue(0);
-        axios.post("http://localhost:5000/api/follow/following/delete", {
+        axios.post("/api/follow/following/delete", {
             username: currentUser,
             fUsername: username
         }).then((data) => {
@@ -111,7 +111,7 @@ const Profile = () => {
         }).catch((err) => {
             console.log(err);
         })
-        axios.post("http://localhost:5000/api/follow/followers/delete", {
+        axios.post("/api/follow/followers/delete", {
             username: username,
             fUsername: currentUser
         }).then((data) => {

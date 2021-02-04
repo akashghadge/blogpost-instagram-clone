@@ -32,7 +32,7 @@ const SignIn = () => {
             //     username: allCurrentData.username,
             //     password: allCurrentData.password
             // })
-            axios.post("http://localhost:5000/api/user/in", {
+            axios.post("/api/user/in", {
                 username: allCurrentData.username,
                 password: allCurrentData.password
             }).then((data) => {

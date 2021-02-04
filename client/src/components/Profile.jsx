@@ -18,7 +18,7 @@ const Profile = () => {
     let history = useHistory();
     let token = localStorage.getItem("token");
     // let [allPost, setAllPost] = useState([]);
-    axios.post("http://localhost:5000/api/profile", {
+    axios.post("/api/profile", {
         token: token
     }).then((data) => {
         // console.log(data);
@@ -34,7 +34,7 @@ const Profile = () => {
 
     let [allPost, setAllPost] = useState([{}]);
     useEffect(() => {
-        axios.post("http://localhost:5000/api/post/", {
+        axios.post("/api/post/", {
             username: username
         }).then((data) => {
             setAllPost(data.data)
@@ -46,7 +46,7 @@ const Profile = () => {
 
     // follwers count
     let [follwersCount, setFollowersCount] = useState(0);
-    axios.post("http://localhost:5000/api/follow/followers/me/count", {
+    axios.post("/api/follow/followers/me/count", {
         username: username
     }).then((data) => {
         setFollowersCount(data.data)
@@ -57,7 +57,7 @@ const Profile = () => {
 
     // following count
     let [follwingCount, setFollowingCount] = useState(0);
-    axios.post("http://localhost:5000/api/follow/following/me/count", {
+    axios.post("/api/follow/following/me/count", {
         username: username
     }).then((data) => {
         setFollowingCount(data.data)

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import { useHistory } from "react-router-dom"
 
 import axios from "axios"
-const Followers = () => {
+const Following = () => {
     // let [fname, setFname] = useState("");
     // let [lname, setLname] = useState("");
     // let [email, setEmail] = useState("");
@@ -11,7 +11,7 @@ const Followers = () => {
 
     let history = useHistory();
     let token = localStorage.getItem("token");
-    axios.post("http://localhost:5000/api/profile", {
+    axios.post("/api/profile", {
         token: token
     }).then((data) => {
         setUsername(data.data.username);
@@ -23,18 +23,17 @@ const Followers = () => {
         console.log(err);
     })
 
-    let [follwers, setFollowers] = useState([]);
+    let [follwing, setFollowing] = useState([]);
     useEffect(() => {
-        axios.post("http://localhost:5000/api/follow/followers/me", {
+        axios.post("/api/follow/following/me", {
             username: username
         }).then((data) => {
-            setFollowers(data.data)
+            setFollowing(data.data)
             // console.log(data.data);
         }).catch((err) => {
             console.log(err);
         })
     }, [username]);
-
 
     function clickedUser(e) {
         let pUsername = e.target.innerText;
@@ -46,14 +45,14 @@ const Followers = () => {
             <div className="text-center">
                 <h2 style={{
                     fontStyle: "italic",
-                    marginTop: "20px"
-                }} className="followHeading">Followers</h2>
+                    marginTop: "20px",
+                }} className="followHeading">Following</h2>
                 <ul className="serachList">
                     {
-                        follwers.length == 0 ? <h1 >No follower present</h1>
+                        follwing.length == 0 ? <h1>you not follow anyone</h1>
                             :
-                            follwers.map((elem, index, arr) => {
-                                return <li className="listElement" name={elem.fusername} onClick={clickedUser}>{elem.fusername}</li>
+                            follwing.map((elem, index, arr) => {
+                                return <li className="listElement" onClick={clickedUser}>{elem.fusername}</li>
                             })
                     }
                 </ul>
@@ -61,4 +60,4 @@ const Followers = () => {
         </>
     )
 }
-export default Followers;
+export default Following;

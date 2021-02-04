@@ -55,6 +55,14 @@ app.use("/api/follow", follow);
 app.use("/api/public", public);
 
 
+// for production use
+app.use(express.static("client/build"));
+const path = require("path");
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"))
+})
+
+
 http.listen(port, () => {
     const port = http.address().port;
     const address = http.address().address;

@@ -10,7 +10,7 @@ import Button from "@material-ui/core/Button/Button"
 import axios from "axios"
 const Posts = (props) => {
     function deletePost(event) {
-        axios.post("http://localhost:5000/api/post/delete", {
+        axios.post("/api/post/delete", {
             username: props.username,
             title: props.title,
             desc: props.desc

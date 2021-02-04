@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import ReactDOM from "react-dom"
+import ReactLoading from "react-loading"
 import { useHistory } from "react-router-dom"
 import { NavLink } from "react-router-dom"
 import Button from "@material-ui/core/Button/Button"
@@ -8,7 +9,7 @@ import axios from "axios"
 
 
 const Profile = () => {
-
+    let [loading, setLoading] = useState(true);
 
     let [fname, setFname] = useState("");
     let [lname, setLname] = useState("");
@@ -39,6 +40,7 @@ const Profile = () => {
         }).then((data) => {
             setAllPost(data.data)
             // console.log(allPost);
+            setLoading(false);
         }).catch((err) => {
             console.log(err);
         })
@@ -85,14 +87,20 @@ const Profile = () => {
             <div>
                 <>
                     {
-                        (allPost.length === 0) ?
-                            <h1 style={{
-                                fontFamily: "Times New Roman",
-                                fontWeight: "700"
-                            }}>No posts available here</h1> :
-                            allPost.map((elem, index, arr) => {
-                                return <Posts delete={1} username={elem.username} title={elem.title} desc={elem.desc}></Posts>
-                            })}
+                        loading ?
+                            <>
+                                <div style={{ position: "relative", textAlign: "center", display: "block", left: "50%", top: "40%" }}>
+                                    <ReactLoading type={"bars"} color={"black"} height={"10%"} width={"10%"}></ReactLoading>
+                                </div>
+                            </> :
+                            (allPost.length === 0) ?
+                                <h1 style={{
+                                    fontFamily: "Times New Roman",
+                                    fontWeight: "700"
+                                }}>No posts available here</h1> :
+                                allPost.map((elem, index, arr) => {
+                                    return <Posts delete={1} username={elem.username} title={elem.title} desc={elem.desc}></Posts>
+                                })}
                 </>
             </div>
         </>

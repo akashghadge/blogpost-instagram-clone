@@ -5,9 +5,10 @@ import { NavLink } from "react-router-dom"
 import Button from "@material-ui/core/Button/Button"
 import Posts from "./Posts"
 import axios from "axios"
-
+import ReactLoading from "react-loading"
 
 const Profile = () => {
+    let [loading, setLoading] = useState(true);
     let { username } = useParams();
     let [fname, setFname] = useState("");
     let [lname, setLname] = useState("");
@@ -41,6 +42,7 @@ const Profile = () => {
             username: username
         }).then((data) => {
             setAllPost(data.data)
+            setLoading(false);
             // console.log(allPost);
         }).catch((err) => {
             console.log(err);
@@ -149,14 +151,20 @@ const Profile = () => {
             <div>
                 <>
                     {
-                        (allPost.length === 0) ?
-                            <h1 style={{
-                                fontFamily: "Times New Roman",
-                                fontWeight: "700"
-                            }}>No posts available here</h1> :
-                            allPost.map((elem, index, arr) => {
-                                return <Posts username={elem.username} title={elem.title} desc={elem.desc}></Posts>
-                            })}
+                        loading ?
+                            <>
+                                <div style={{ position: "relative", textAlign: "center", display: "block", left: "50%", top: "40%" }}>
+                                    <ReactLoading type={"bars"} color={"black"} height={"10%"} width={"10%"}></ReactLoading>
+                                </div>
+                            </> :
+                            (allPost.length === 0) ?
+                                <h1 style={{
+                                    fontFamily: "Times New Roman",
+                                    fontWeight: "700"
+                                }}>No posts available here</h1> :
+                                allPost.map((elem, index, arr) => {
+                                    return <Posts username={elem.username} title={elem.title} desc={elem.desc}></Posts>
+                                })}
                 </>
             </div>
         </>

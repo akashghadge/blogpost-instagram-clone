@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react"
 import ReactDOM from "react-dom"
-
+import ReactLoading from "react-loading"
 import axios from "axios"
 import Search from "@material-ui/icons/Search"
 
 import Button from "@material-ui/core/Button/Button"
 import { useHistory } from "react-router-dom"
 const SearchPage = () => {
+    let [loading, setLoading] = useState(true);
     let [username, setUser] = useState("");
 
 
@@ -44,6 +45,7 @@ const SearchPage = () => {
         }).then((data) => {
             // console.log(data);
             setAllUsers(data.data);
+            setLoading(false);
         }).catch((err) => {
             // console.log(err);
         })
@@ -80,16 +82,22 @@ const SearchPage = () => {
                 textAlign: "center"
             }} className="serachList">
                 {
-                    allUsers.length != 0 ?
-                        allUsers.map((elem, index) => {
-                            return (
-                                <>
-                                    <li className="listElement" onClick={clickedUser} name={elem.username} id={elem.username} style={{ display: "inline" }}>{elem.username}</li>
-                                    <br></br>
-                                </>
-                            )
-                        }) :
-                        <h3>No users available</h3>
+                    loading ?
+                        <>
+                            <div style={{ position: "relative", textAlign: "center", display: "block", left: "50%", top: "40%" }}>
+                                <ReactLoading type={"spin"} color={"black"} height={"5%"} width={"5%"}></ReactLoading>
+                            </div>
+                        </> :
+                        allUsers.length != 0 ?
+                            allUsers.map((elem, index) => {
+                                return (
+                                    <>
+                                        <li className="listElement" onClick={clickedUser} name={elem.username} id={elem.username} style={{ display: "inline" }}>{elem.username}</li>
+                                        <br></br>
+                                    </>
+                                )
+                            }) :
+                            <h3>No users available</h3>
                 }
             </ul>
         </>

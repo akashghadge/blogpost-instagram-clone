@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import ReactDOM from "react-dom"
 import Posts from "./Posts"
-
+import ReactLoading from "react-loading"
 import imgSrc from "../Resources/Akash Image.jpg"
 
 import imgSrc2 from "../Resources/computer image.jpg"
@@ -28,6 +28,8 @@ const HomePage = () => {
         axios.post("/api/post/all").then((data) => {
             setAllPost(data.data)
             // console.log(allPost);
+            setLoading(false);
+            // console.log(loading);
         }).catch((err) => {
             console.log(err);
         })
@@ -39,7 +41,12 @@ const HomePage = () => {
 
             <hr></hr>
             {
-                loading ? <h4>Loading ...</h4> :
+                loading ?
+                    <>
+                        <div style={{ position: "relative", textAlign: "center", display: "block", left: "50%", top: "40%" }}>
+                            <ReactLoading type={"bars"} color={"black"} height={"10%"} width={"10%"}></ReactLoading>
+                        </div>
+                    </> :
                     (allPost.length == 0) ?
                         <h1>No posts available here</h1> : allPost.map((elem, index, arr) => {
                             return <Posts username={elem.username} title={elem.title} desc={elem.desc}></Posts>

@@ -10,6 +10,8 @@ import imgSrc3 from "../Resources/A letter logo.jpg"
 import axios from "axios"
 import { useHistory } from "react-router-dom"
 const HomePage = () => {
+    let [loading, setLoading] = useState(true)
+
     let history = useHistory();
     let token = localStorage.getItem("token");
     axios.post("/api/me", {
@@ -34,12 +36,14 @@ const HomePage = () => {
 
     return (
         <>
+
             <hr></hr>
             {
-                (allPost.length == 0) ?
-                    <h1>No posts available here</h1> : allPost.map((elem, index, arr) => {
-                        return <Posts username={elem.username} title={elem.title} desc={elem.desc}></Posts>
-                    })}
+                loading ? <h4>Loading ...</h4> :
+                    (allPost.length == 0) ?
+                        <h1>No posts available here</h1> : allPost.map((elem, index, arr) => {
+                            return <Posts username={elem.username} title={elem.title} desc={elem.desc}></Posts>
+                        })}
         </>
     )
 }
